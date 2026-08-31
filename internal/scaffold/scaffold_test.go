@@ -111,6 +111,61 @@ func TestInitializeDetectsBrownfield(t *testing.T) {
 	}
 }
 
+func TestInitializeReusesExistingManifestForManagedBlocks(t *testing.T) {
+	t.Parallel()
+
+	target := t.TempDir()
+	if _, err := Initialize(Options{
+		Target:      target,
+		ProfileID:   "saas-web",
+		ProjectName: "Original SaaS",
+		Idea:        "Original customer problem",
+		Agent:       "claude",
+	}); err != nil {
+		t.Fatalf("first Initialize() error = %v", err)
+	}
+
+	result, err := Initialize(Options{
+		Target:      target,
+		ProfileID:   "expo-mobile",
+		ProjectName: "Conflicting Project",
+		Idea:        "Conflicting idea",
+		Agent:       "codex",
+	})
+	if err != nil {
+		t.Fatalf("second Initialize() error = %v", err)
+	}
+	if result.Profile.ID != "saas-web" {
+		t.Fatalf("Profile = %q, want existing saas-web", result.Profile.ID)
+	}
+
+	manifestData, err := os.ReadFile(filepath.Join(target, ".auto-company", "manifest.json"))
+	if err != nil {
+		t.Fatalf("read manifest: %v", err)
+	}
+	var manifest model.Manifest
+	if err := json.Unmarshal(manifestData, &manifest); err != nil {
+		t.Fatalf("decode manifest: %v", err)
+	}
+	if manifest.Project.Name != "Original SaaS" || manifest.Project.Profile != "saas-web" || manifest.Project.TargetAgent != "claude" {
+		t.Fatalf("existing manifest changed unexpectedly: %+v", manifest.Project)
+	}
+
+	for _, name := range []string{"CLAUDE.md", "AGENTS.md"} {
+		content, err := os.ReadFile(filepath.Join(target, name))
+		if err != nil {
+			t.Fatalf("read %s: %v", name, err)
+		}
+		text := string(content)
+		if !strings.Contains(text, "Project: **Original SaaS**") || !strings.Contains(text, "Profile: `saas-web`") {
+			t.Fatalf("%s managed block does not use existing manifest: %s", name, text)
+		}
+		if strings.Contains(text, "Conflicting Project") || strings.Contains(text, "expo-mobile") {
+			t.Fatalf("%s managed block contains conflicting re-init arguments: %s", name, text)
+		}
+	}
+}
+
 func TestLoadProfileRejectsTraversalAndUnknownProfile(t *testing.T) {
 	t.Parallel()
 

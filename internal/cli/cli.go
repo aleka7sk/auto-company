@@ -187,6 +187,12 @@ func runIntegrations(args []string, out, errOut io.Writer) error {
 	if err := set.Parse(args); err != nil {
 		return err
 	}
+	if *agent != "claude" && *agent != "codex" {
+		return fmt.Errorf("unsupported agent %q", *agent)
+	}
+	if _, err := scaffold.LoadProfile(*profile); err != nil {
+		return err
+	}
 	items, err := registry.Filter(*profile, *agent)
 	if err != nil {
 		return err

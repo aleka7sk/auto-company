@@ -75,6 +75,11 @@ func Initialize(opts Options) (Result, error) {
 		return result, fmt.Errorf("create target: %w", err)
 	}
 
+	mode, err := detectMode(absTarget)
+	if err != nil {
+		return result, err
+	}
+
 	profile, err := LoadProfile(opts.ProfileID)
 	if err != nil {
 		return result, err
@@ -86,10 +91,43 @@ func Initialize(opts Options) (Result, error) {
 		opts.Idea = "[TODO: describe the customer problem and desired outcome]"
 	}
 
-	mode, err := detectMode(absTarget)
-	if err != nil {
-		return result, err
+	// Existing Auto Company state is the durable source of truth. A normal
+	// re-run may refresh managed instruction blocks, but it must not generate
+	// those blocks from conflicting CLI arguments while preserving the old
+	// manifest and profile files. Changing project identity or profile is an
+	// explicit migration and therefore requires --force.
+	if !opts.Force {
+		existingPath := filepath.Join(absTarget, ".auto-company", "manifest.json")
+		existingData, readErr := os.ReadFile(existingPath)
+		switch {
+		case readErr == nil:
+			var existing model.Manifest
+			if err := json.Unmarshal(existingData, &existing); err != nil {
+				return result, fmt.Errorf("parse existing Auto Company manifest: %w", err)
+			}
+			if strings.TrimSpace(existing.Project.Name) == "" || strings.TrimSpace(existing.Project.Profile) == "" {
+				return result, errors.New("existing Auto Company manifest is missing project name or profile; repair it or re-run with --force")
+			}
+			existingProfile, err := LoadProfile(existing.Project.Profile)
+			if err != nil {
+				return result, fmt.Errorf("load profile from existing Auto Company manifest: %w", err)
+			}
+			profile = existingProfile
+			opts.ProjectName = existing.Project.Name
+			opts.Idea = existing.Project.Idea
+			if strings.TrimSpace(existing.Project.TargetAgent) != "" {
+				opts.Agent = existing.Project.TargetAgent
+			}
+			if strings.TrimSpace(existing.Project.Mode) != "" {
+				mode = existing.Project.Mode
+			}
+		case errors.Is(readErr, os.ErrNotExist):
+			// First initialization. Continue with the supplied options.
+		default:
+			return result, fmt.Errorf("read existing Auto Company manifest: %w", readErr)
+		}
 	}
+
 	data := templateData{
 		ProjectName: opts.ProjectName,
 		Idea:        opts.Idea,

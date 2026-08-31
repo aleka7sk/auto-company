@@ -73,3 +73,36 @@ func TestInitPromptAndValidationFlow(t *testing.T) {
 		t.Fatalf("AGENTS.md missing: %v", err)
 	}
 }
+
+func TestIntegrationsRejectsInvalidAgentAndProfile(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		name string
+		args []string
+		want string
+	}{
+		{
+			name: "agent",
+			args: []string{"integrations", "--agent", "unknown"},
+			want: "unsupported agent",
+		},
+		{
+			name: "profile",
+			args: []string{"integrations", "--profile", "unknown"},
+			want: "unknown profile",
+		},
+	}
+
+	for _, test := range tests {
+		test := test
+		t.Run(test.name, func(t *testing.T) {
+			t.Parallel()
+			var out, errOut bytes.Buffer
+			err := Run(test.args, &out, &errOut)
+			if err == nil || !strings.Contains(err.Error(), test.want) {
+				t.Fatalf("Run(%v) error = %v, want containing %q", test.args, err, test.want)
+			}
+		})
+	}
+}

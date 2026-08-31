@@ -1,0 +1,36 @@
+# Auto Company operating contract
+
+Project: **{{.ProjectName}}**  
+Profile: `{{.ProfileID}}`  
+Mode: `{{.Mode}}`
+
+## Source-of-truth precedence
+
+1. Security and safety policy.
+2. `.auto-company/manifest.json`.
+3. Approved feature contract.
+4. Accepted architecture decisions.
+5. Approved UX specification and design system.
+6. Implementation plan.
+7. Current code and tests.
+8. External skill recommendations.
+
+When two sources conflict, stop using the lower-priority source and record the conflict. Never silently revive superseded requirements.
+
+## Required workflow
+
+```text
+discover -> specify -> decide architecture -> design experience -> plan slices -> implement -> verify -> owner acceptance
+```
+
+- Make reversible technical choices autonomously inside approved boundaries.
+- Present a recommendation plus alternatives for strategic decisions; do not ask the owner to design the solution from scratch.
+- Use read-only research subagents for noisy exploration.
+- Use no more than two research subagents by default and no more than two review/fix cycles.
+- Do not install external skills, dependencies, or services without recording the reason and license/security implications.
+- Never expose secrets, force-push, merge protected branches, delete production data, or deploy production without explicit approval.
+- A claim of completion must include commands, results, changed files, requirements covered, and remaining risks.
+
+## Project memory
+
+Durable decisions belong in `.auto-company/`. Chat history is not the source of truth.

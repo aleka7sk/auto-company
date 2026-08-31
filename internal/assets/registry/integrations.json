@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "1.0",
+  "integrations": [
+    {
+      "id": "spec-kit",
+      "name": "GitHub Spec Kit",
+      "repository": "github/spec-kit",
+      "license": "MIT",
+      "maturity": "high",
+      "role": "spec-driven artifact flow and convergence",
+      "profiles": ["saas-web", "fullstack-saas"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["uv tool install specify-cli", "specify init --here --force --non-interactive --integration claude"],
+        "codex": ["uv tool install specify-cli", "specify init --here --force --non-interactive --integration codex"]
+      },
+      "notes": "Optional because Auto Company already defines a core artifact flow. Use Spec Kit when you want its full CLI and convergence workflow; do not create duplicate sources of truth."
+    },
+    {
+      "id": "gstack",
+      "name": "gstack",
+      "repository": "garrytan/gstack",
+      "license": "MIT",
+      "maturity": "high",
+      "role": "founder, architecture, design, QA, and release critique",
+      "profiles": ["all"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["Follow the reviewed installation instructions from https://github.com/garrytan/gstack and install only the roles you plan to invoke."],
+        "codex": ["Follow the reviewed installation instructions from https://github.com/garrytan/gstack using its Codex host option."]
+      },
+      "notes": "Use selected review skills, not a second competing end-to-end orchestrator. Pin a reviewed release or commit."
+    },
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "repository": "obra/superpowers",
+      "license": "MIT",
+      "maturity": "high",
+      "role": "TDD, systematic debugging, worktrees, review, and verification",
+      "profiles": ["all"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["claude plugin install superpowers@claude-plugins-official"],
+        "codex": ["Open /plugins, search for Superpowers, and install the curated plugin."]
+      },
+      "notes": "Activate selectively. Full subagent review on every tiny task can consume unnecessary context and time."
+    },
+    {
+      "id": "ui-ux-pro-max",
+      "name": "UI UX Pro Max",
+      "repository": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "license": "MIT",
+      "maturity": "high",
+      "role": "design-system exploration, UI patterns, charts, mobile and dashboard guidance",
+      "profiles": ["all"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["claude plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill", "claude plugin install ui-ux-pro-max@ui-ux-pro-max-skill"],
+        "codex": ["npm install -g ui-ux-pro-max-cli", "uipro init --ai codex"]
+      },
+      "notes": "Use for visual option generation after the user flow and information architecture are defined."
+    },
+    {
+      "id": "interface-design",
+      "name": "Interface Design",
+      "repository": "Dammyjay93/interface-design",
+      "license": "MIT",
+      "maturity": "medium-high",
+      "role": "persistent design decisions and consistency for apps, dashboards, and admin tools",
+      "profiles": ["saas-web", "fullstack-saas"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["npx skills@latest add https://github.com/dammyjay93/interface-design --skill interface-design --agent claude-code -g"],
+        "codex": ["npx skills@latest add https://github.com/dammyjay93/interface-design --skill interface-design --agent codex -g"]
+      },
+      "notes": "Persist the selected design direction once; do not let multiple design skills redefine it independently."
+    },
+    {
+      "id": "expo-skills",
+      "name": "Official Expo Skills",
+      "repository": "expo/skills",
+      "license": "MIT",
+      "maturity": "high-official",
+      "role": "Expo Router, native UI, design systems, data, upgrades, EAS, and releases",
+      "profiles": ["expo-mobile"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["claude plugin install expo@claude-plugins-official"],
+        "codex": ["codex plugin add expo@openai-curated"]
+      },
+      "notes": "Treat Expo documentation and CLI output as source of truth."
+    },
+    {
+      "id": "callstack-agent-skills",
+      "name": "Callstack Agent Skills",
+      "repository": "callstackincubator/agent-skills",
+      "license": "MIT",
+      "maturity": "high-specialist",
+      "role": "production React Native performance, navigation, testing, device automation, and upgrades",
+      "profiles": ["expo-mobile"],
+      "agents": ["claude", "codex"],
+      "recommended": true,
+      "install": {
+        "claude": ["npx skills@latest add callstackincubator/agent-skills --skill '*' --agent claude-code"],
+        "codex": ["Open /plugins, search for React Native bundles from Callstack, and install only the needed bundle."]
+      },
+      "notes": "Complements Expo skills; it does not replace Expo-specific source-of-truth guidance."
+    },
+    {
+      "id": "wondel-skills",
+      "name": "Wondel.ai Skills",
+      "repository": "wondelai/skills",
+      "license": "MIT",
+      "maturity": "medium-high",
+      "role": "selected product, UX, architecture, growth, and code-quality frameworks",
+      "profiles": ["fullstack-saas", "saas-web"],
+      "agents": ["claude", "codex"],
+      "recommended": false,
+      "install": {
+        "claude": ["claude plugin marketplace add wondelai/skills", "Install only selected collections such as product-strategy, systems-architecture, or ux-design."],
+        "codex": ["npx skills add wondelai/skills/<selected-skill> --global"]
+      },
+      "notes": "Do not install every collection by default. Select only the frameworks required by the current product phase."
+    },
+    {
+      "id": "product-manager-skills",
+      "name": "Product Manager Skills",
+      "repository": "deanpeters/Product-Manager-Skills",
+      "license": "CC-BY-NC-SA-4.0",
+      "maturity": "high-content",
+      "role": "deep product management framework reference",
+      "profiles": ["all"],
+      "agents": ["claude", "codex"],
+      "recommended": false,
+      "install": {
+        "claude": ["Review the license and install only for permitted non-commercial/internal use."],
+        "codex": ["Review the license and install only for permitted non-commercial/internal use."]
+      },
+      "notes": "Reference-only by default. Do not vendor or redistribute its content in a commercial toolkit without permission."
+    }
+  ]
+}

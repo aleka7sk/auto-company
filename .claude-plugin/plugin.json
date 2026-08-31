@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "auto-company",
+  "displayName": "Auto Company",
+  "version": "0.1.0",
+  "description": "A controlled AI product company for turning SaaS and mobile ideas into traceable, reviewed, production-oriented software.",
+  "author": {
+    "name": "Alisher Tolegenov"
+  },
+  "homepage": "https://github.com/aleka7sk/auto-company",
+  "repository": "https://github.com/aleka7sk/auto-company",
+  "license": "MIT",
+  "keywords": [
+    "saas",
+    "product-development",
+    "architecture",
+    "ux",
+    "mobile",
+    "production-readiness",
+    "agent-skills"
+  ]
+}

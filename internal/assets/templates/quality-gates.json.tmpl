@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0",
+  "defaults": {
+    "maxResearchAgents": 2,
+    "maxParallelImplementationAgents": 2,
+    "maxReviewCycles": 2,
+    "autoMerge": false,
+    "productionDeployment": "explicit-owner-approval"
+  },
+  "gates": [
+    {"id": "G1", "name": "Product decision", "required": true, "evidence": "approved product brief and feature contract"},
+    {"id": "G2", "name": "Architecture decision", "required": true, "evidence": "accepted ADR with sources, alternatives, failure modes, and rollback"},
+    {"id": "G3", "name": "UX readiness", "required": true, "evidence": "journey, state matrix, accessibility, and selected design direction"},
+    {"id": "G4", "name": "Implementation readiness", "required": true, "evidence": "traceable slices, test commands, migration and rollback plan"},
+    {"id": "G5", "name": "Automated verification", "required": true, "evidence": "clean format/lint/build/tests/security checks"},
+    {"id": "G6", "name": "User acceptance", "required": true, "evidence": "working primary journey and failure recovery on target environments"},
+    {"id": "G7", "name": "Production approval", "required": true, "evidence": "owner approval, observability, backup, rollout, rollback, and runbook"}
+  ]
+}

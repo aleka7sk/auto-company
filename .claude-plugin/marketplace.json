@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "auto-company-marketplace",
+  "version": "0.1.0",
+  "description": "Auto Company plugins for controlled AI-assisted product delivery.",
+  "owner": {
+    "name": "Alisher Tolegenov"
+  },
+  "plugins": [
+    {
+      "name": "auto-company",
+      "description": "Create and evolve SaaS and mobile products through product, architecture, UX, implementation, and release gates.",
+      "source": "./",
+      "category": "development",
+      "homepage": "https://github.com/aleka7sk/auto-company"
+    }
+  ]
+}

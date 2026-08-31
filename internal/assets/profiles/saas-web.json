@@ -1,0 +1,36 @@
+{
+  "id": "saas-web",
+  "displayName": "Web SaaS",
+  "description": "Production-oriented B2B/B2C SaaS with a responsive web application and operational dashboard.",
+  "defaultStack": {
+    "frontend": "Choose after architecture review; prefer a typed, maintained web stack",
+    "backend": "Choose after architecture review; modular monolith by default",
+    "database": "PostgreSQL by default when relational consistency matters",
+    "deployment": "Managed platform with preview environments and rollback"
+  },
+  "requiredArtifacts": [
+    ".auto-company/manifest.json",
+    ".auto-company/product/product-brief.md",
+    ".auto-company/product/feature-contract.md",
+    ".auto-company/architecture/ADR-0001.md",
+    ".auto-company/ux/ux-spec.md",
+    ".auto-company/delivery/implementation-plan.md",
+    ".auto-company/evidence/release-evidence.md"
+  ],
+  "qualityGates": [
+    "requirements-traceability",
+    "permissions-and-tenant-isolation",
+    "database-migration-safety",
+    "responsive-and-accessible-ui",
+    "unit-integration-e2e-tests",
+    "observability-and-auditability",
+    "backup-rollback-and-incident-readiness"
+  ],
+  "recommendedIntegrations": [
+    "spec-kit",
+    "gstack",
+    "superpowers",
+    "ui-ux-pro-max",
+    "interface-design"
+  ]
+}

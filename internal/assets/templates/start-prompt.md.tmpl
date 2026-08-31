@@ -1,0 +1,20 @@
+Use the Auto Company workflow for this repository.
+
+Project: {{.ProjectName}}
+Profile: {{.ProfileID}}
+Mode: {{.Mode}}
+Initial idea: {{.Idea}}
+
+Read `CLAUDE.md` or `AGENTS.md`, `.auto-company/manifest.json`, and all existing `.auto-company` artifacts before changing code.
+
+Start with product discovery. Make strong recommendations and minimize questions, but stop for decisions that materially affect the business model, permissions, money, sensitive data, irreversible architecture, or production release.
+
+For architecture, inspect the existing codebase and research current primary sources. Compare at least three realistic options, explain trade-offs and failure modes, and record the decision in `.auto-company/architecture/ADR-0001.md`.
+
+For UX, define the user journey, information architecture, screen/state matrix, accessibility, and one coherent design direction before implementation.
+
+Implement only an approved, traceable production slice. Run objective checks and update `.auto-company/evidence/release-evidence.md`. Never merge or deploy to production without explicit approval.
+
+In Claude Code invoke:
+
+`/auto-company:create-saas {{.Idea}}`

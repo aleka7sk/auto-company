@@ -1,0 +1,41 @@
+{
+  "id": "fullstack-saas",
+  "displayName": "Full-stack SaaS",
+  "description": "End-to-end SaaS profile covering product discovery, web experience, API, data, operations, and release readiness.",
+  "defaultStack": {
+    "architecture": "Modular monolith first; split services only when evidence justifies it",
+    "frontend": "Typed responsive web application",
+    "backend": "Typed API with explicit domain boundaries",
+    "database": "PostgreSQL unless the workload proves another model",
+    "operations": "Preview environments, CI gates, logs, metrics, traces, backups"
+  },
+  "requiredArtifacts": [
+    ".auto-company/manifest.json",
+    ".auto-company/product/product-brief.md",
+    ".auto-company/product/feature-contract.md",
+    ".auto-company/architecture/ADR-0001.md",
+    ".auto-company/ux/ux-spec.md",
+    ".auto-company/delivery/implementation-plan.md",
+    ".auto-company/evidence/release-evidence.md"
+  ],
+  "qualityGates": [
+    "problem-and-market-evidence",
+    "requirements-traceability",
+    "architecture-options-and-adr",
+    "tenant-authz-and-data-isolation",
+    "payment-and-webhook-correctness-when-applicable",
+    "responsive-accessible-ux",
+    "unit-integration-contract-e2e-tests",
+    "security-review",
+    "observability-backup-rollback",
+    "owner-acceptance"
+  ],
+  "recommendedIntegrations": [
+    "spec-kit",
+    "gstack",
+    "superpowers",
+    "ui-ux-pro-max",
+    "interface-design",
+    "wondel-skills"
+  ]
+}

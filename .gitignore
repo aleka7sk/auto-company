@@ -1,0 +1,28 @@
+# Build output
+bin/
+autoco
+autoco.exe
+*.test
+coverage.out
+
+# Local execution
+.auto-company/runs/
+.auto-company/local/
+.tmp/
+tmp/
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+
+# Node utilities
+node_modules/

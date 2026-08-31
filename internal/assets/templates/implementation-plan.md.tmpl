@@ -1,0 +1,73 @@
+# Implementation plan — first production slice
+
+Status: DRAFT  
+Project: {{.ProjectName}}
+
+## Inputs
+
+- Product brief: `../product/product-brief.md`
+- Feature contract: `../product/feature-contract.md`
+- Architecture decision: `../architecture/ADR-0001.md`
+- UX specification: `../ux/ux-spec.md`
+
+## Traceability matrix
+
+| Requirement | Design/architecture reference | Task(s) | Test/evidence |
+|---|---|---|---|
+| FR-001 | [TODO] | [TODO] | [TODO] |
+| BR-001 | [TODO] | [TODO] | [TODO] |
+| NFR-001 | [TODO] | [TODO] | [TODO] |
+
+## Delivery slices
+
+Each slice must be independently reviewable and leave the repository in a working state.
+
+### Slice 1 — [TODO]
+
+- User value: [TODO]
+- Files/modules expected: [TODO]
+- Dependencies: [TODO]
+- Migration/API impact: [TODO]
+- Tests: [TODO]
+- Demo evidence: [TODO]
+- Rollback: [TODO]
+
+## Task protocol
+
+For every task:
+
+1. Confirm the requirement IDs.
+2. Inspect existing patterns before creating new abstractions.
+3. Add or update tests that fail for the right reason.
+4. Implement the smallest complete behavior.
+5. Run targeted checks, then broader checks.
+6. Record evidence and unresolved risks.
+7. Do not expand scope without updating approved artifacts.
+
+## Quality commands
+
+| Gate | Command | Expected result |
+|---|---|---|
+| Format | [TODO] | clean |
+| Lint | [TODO] | pass |
+| Typecheck/build | [TODO] | pass |
+| Unit tests | [TODO] | pass |
+| Integration/contract | [TODO] | pass |
+| E2E/device | [TODO] | pass |
+| Security | [TODO] | no unresolved high severity findings |
+
+## Deployment and migration plan
+
+- Preview environment: [TODO]
+- Feature flags: [TODO]
+- Data migration: [TODO]
+- Backward compatibility: [TODO]
+- Monitoring during rollout: [TODO]
+- Rollback trigger and procedure: [TODO]
+
+## Human checkpoints
+
+- Product scope: [TODO]
+- Architecture/data/security: [TODO]
+- UX direction: [TODO]
+- Production release: ALWAYS explicit

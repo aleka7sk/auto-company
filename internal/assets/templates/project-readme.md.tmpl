@@ -1,0 +1,33 @@
+# Auto Company workspace — {{.ProjectName}}
+
+This directory is the durable product-delivery memory for the project. Conversations are temporary; approved artifacts here are the source of truth.
+
+## Current state
+
+- Profile: `{{.ProfileID}}` ({{.ProfileName}})
+- Mode: `{{.Mode}}`
+- Target agent: `{{.Agent}}`
+- Initialized: `{{.Date}}`
+
+## Artifact flow
+
+```text
+product brief
+  -> feature contract
+  -> architecture decision
+  -> UX specification
+  -> implementation plan
+  -> code and tests
+  -> release evidence
+```
+
+## Rules
+
+1. Do not start implementation while critical product decisions are unresolved.
+2. Do not silently change an approved requirement to make implementation easier.
+3. Research architecture from current primary sources and compare realistic alternatives.
+4. UI is not complete without loading, empty, error, permission, accessibility, and responsive/native states.
+5. A feature is not done because an agent says so; it needs objective evidence.
+6. Merge and production deployment require explicit owner approval.
+
+Local execution logs belong in `.auto-company/runs/` and are intentionally ignored by git.

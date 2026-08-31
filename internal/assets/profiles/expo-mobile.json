@@ -1,0 +1,37 @@
+{
+  "id": "expo-mobile",
+  "displayName": "Expo Mobile Product",
+  "description": "Production-oriented iOS and Android product built with Expo and React Native.",
+  "defaultStack": {
+    "mobile": "Expo + React Native + TypeScript",
+    "navigation": "Expo Router",
+    "backend": "Existing API or separately reviewed backend",
+    "delivery": "Development build, preview channel, staged store release"
+  },
+  "requiredArtifacts": [
+    ".auto-company/manifest.json",
+    ".auto-company/product/product-brief.md",
+    ".auto-company/product/feature-contract.md",
+    ".auto-company/architecture/ADR-0001.md",
+    ".auto-company/ux/ux-spec.md",
+    ".auto-company/delivery/implementation-plan.md",
+    ".auto-company/evidence/release-evidence.md"
+  ],
+  "qualityGates": [
+    "requirements-traceability",
+    "permissions-and-private-data",
+    "offline-loading-empty-error-states",
+    "ios-and-android-native-behavior",
+    "accessibility-and-dynamic-text",
+    "unit-component-device-tests",
+    "real-device-smoke-test",
+    "store-release-and-rollback-readiness"
+  ],
+  "recommendedIntegrations": [
+    "gstack",
+    "superpowers",
+    "ui-ux-pro-max",
+    "expo-skills",
+    "callstack-agent-skills"
+  ]
+}

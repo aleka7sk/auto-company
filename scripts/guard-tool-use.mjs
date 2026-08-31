@@ -44,7 +44,7 @@ if (["Read", "Write", "Edit"].includes(toolName) && candidatePath && !isAllowedE
   }
 }
 
-if (toolName === "Bash") {
+if (["Bash", "PowerShell"].includes(toolName)) {
   const command = String(input.command ?? "");
   const normalized = command.toLowerCase().replaceAll("\\", "/").replace(/\s+/g, " ").trim();
   const blocked = [

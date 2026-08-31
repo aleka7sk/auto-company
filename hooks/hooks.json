@@ -2,7 +2,7 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash|Read|Write|Edit",
+        "matcher": "Bash|PowerShell|Read|Write|Edit",
         "hooks": [
           {
             "type": "command",

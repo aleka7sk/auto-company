@@ -38,6 +38,6 @@ blocked({ tool_name: "Bash", tool_input: { command: "git push origin main" } });
 blocked({ tool_name: "Bash", tool_input: { command: "git push origin HEAD:main" } });
 blocked({ tool_name: "Bash", tool_input: { command: "gh pr merge 42 --squash" } });
 blocked({ tool_name: "Bash", tool_input: { command: "terraform destroy -auto-approve" } });
-blocked({ tool_name: "Bash", tool_input: { command: "Remove-Item C:\\ -Recurse -Force" } });
+blocked({ tool_name: "PowerShell", tool_input: { command: "Remove-Item C:\\ -Recurse -Force" } });
 
 console.log("guard-tool-use: all tests passed");
